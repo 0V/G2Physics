@@ -78,6 +78,16 @@ namespace schrodinger
       runge_kutta();
     }
 
+    void setDX(double dX)
+    {
+      dx = dX;
+    }
+
+    void setCurrentP(double cP)
+    {
+      p = cP;
+    }
+
     void setCurrentX(double cX)
     {
       x = cX;
@@ -86,6 +96,11 @@ namespace schrodinger
     void setCurrentY(double cY)
     {
       y = cY;
+    }
+
+    double getDX() const
+    {
+      return dx;
     }
 
     double getCurrentX() const

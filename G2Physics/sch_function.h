@@ -64,6 +64,42 @@ namespace  schrodinger {
 
 
   };
+
+
+  class RightSideFunctionHarmonicPotential : public RightSideFunction
+  {
+  private:
+    double _E = 0;
+    double k = 1;
+    double range = 2;
+  public:
+    RightSideFunctionHarmonicPotential(double E)
+    {
+      _E = E;
+    }
+
+    double getV(double x) override
+    {
+      return (x * x * 0.5 * k);
+    }
+
+    double getE(double x) override
+    {
+      return _E;
+    }
+
+    void setV(double kvalue) override
+    {
+      k = kvalue;
+    }
+
+    void setE(double u) override
+    {
+      _E = u;
+    }
+
+
+  };
 }
 
 #endif
