@@ -14,7 +14,7 @@ namespace  schrodinger {
 
     double f(double x, double y)
     {
-      return 2*(getV(x) - getE(x)) * y;
+      return 2 * (getV(x) - getE(x)) * y;
     }
 
     virtual ~RightSideFunction()
@@ -32,7 +32,7 @@ namespace  schrodinger {
   public:
     RightSideFunctionWellPotential(double E)
     {
-      _E = E;      
+      _E = E;
     }
 
     double getV(double x) override
@@ -96,6 +96,55 @@ namespace  schrodinger {
     void setE(double u) override
     {
       _E = u;
+    }
+
+
+  };
+
+  class RightSideFunctionInclinedWellPotential : public RightSideFunction
+  {
+  private:
+    double _E = 0;
+    double _V = -50;
+    double range = 2;
+    double sl = 1;
+  public:
+    RightSideFunctionInclinedWellPotential(double E, double slope)
+    {
+      _E = E;
+      sl = slope;
+    }
+
+    double getV(double x) override
+    {
+      double v = 0;
+      if (x >= -range && x <= range)
+      {
+        v = _V + sl*x;
+      }
+
+      return v;
+    }
+
+    double getE(double x) override
+    {
+      return _E;
+    }
+
+
+    void setV(double v) override
+    {
+      _V = v;
+    }
+
+    void setE(double u) override
+    {
+      _E = u;
+    }
+
+    void setSlope(double slope) 
+    {
+      sl = slope;
     }
 
 
