@@ -5,16 +5,17 @@ set grid
 #yrange[-0.1:0.1]
 
 stdl = 1923276.817599714501
-fileName = "6.txt";
+filename = "6.txt";
+output_name = "out.png";
 
 set terminal png
-set output "out.png"
-plot fileName using 1:($2/sqrt(stdl)) w lp lw 2 pt 5 ps 0
+set output output_name
+plot filename using 1:($2/sqrt(stdl)) w lp lw 2 pt 5 ps 0
 
 set terminal png
-set output "out.png"
-replot fileName using 1:($3) w lp lw 2 pt 5 ps 0
+set output output_name
+replot filename using 1:($3) w lp lw 2 pt 5 ps 0
 
 set terminal png
-set output "out.png"
-replot fileName using 1:($2*$2/stdl) w lp lw 2 pt 5 ps 0
+set output output_name
+replot filename using 1:($2*$2/stdl) w lp lw 2 pt 5 ps 0
