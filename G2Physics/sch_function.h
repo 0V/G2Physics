@@ -9,6 +9,8 @@ namespace  schrodinger {
   public:
     virtual double getV(double x) { return 0; }
     virtual double getE(double x) { return 0; }
+    virtual void setV(double v) { }
+    virtual void setE(double u) { }
 
     double f(double x, double y)
     {
@@ -26,16 +28,17 @@ namespace  schrodinger {
   private:
     double _E = 0;
     double _V = -50;
+    double range = 2;
   public:
     RightSideFunctionWellPotential(double E)
     {
-      _E = E;
+      _E = E;      
     }
 
     double getV(double x) override
     {
       double v = 0;
-      if (x >= -2 && x <= 2)
+      if (x >= -range && x <= range)
       {
         v = _V;
       }
@@ -49,12 +52,12 @@ namespace  schrodinger {
     }
 
 
-    void setV(double v)
+    void setV(double v) override
     {
       _V = v;
     }
 
-    void setE(double u)
+    void setE(double u) override
     {
       _E = u;
     }
