@@ -142,13 +142,81 @@ namespace  schrodinger {
       _E = u;
     }
 
-    void setSlope(double slope) 
+    void setSlope(double slope)
     {
       sl = slope;
     }
 
 
   };
+
+  class RightSideFunctionDoubleWellPotential : public RightSideFunction
+  {
+  private:
+    double _E = 0;
+    double _V[2] = { -50 ,-50 };
+    double range[4] = { -2,-1,0,1 };
+  public:
+    RightSideFunctionDoubleWellPotential(double E)
+    {
+      _E = E;
+    }
+
+    RightSideFunctionDoubleWellPotential(double E, double rangeX[4])
+    {
+      _E = E;
+
+      for (int i = 0; i < 4; i++) {
+        range[i] = rangeX[i];
+      }
+    }
+
+    double getV(double x) override
+    {
+      double v = 0;
+      if (x >= range[0] && x <= range[1])
+      {
+        v = _V[0];
+      }
+      else if (x >= range[2] && x <= range[3])
+      {
+        v = _V[1];
+      }
+
+      return v;
+    }
+
+    double getE(double x) override
+    {
+      return _E;
+    }
+
+
+    void setV(double v) override
+    {
+      _V[0] = _V[1] = v;
+    }
+    void setE(double u) override
+    {
+      _E = u;
+    }
+
+    void setV(double v[2])
+    {
+      _V[0] = v[0];
+      _V[1] = v[1];
+    }
+    void setRange(double rangeX[4])
+    {
+
+      for (int i = 0; i < 4; i++) {
+        range[i] = rangeX[i];
+      }
+
+    }
+
+  };
+
 }
 
 #endif

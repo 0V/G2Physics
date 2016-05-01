@@ -51,7 +51,8 @@ int main(int argc, char** argv)
   double startP = 1;
   double startY = 0;
   double _V = 1;
-  double anyv = 2;
+  //  double anyv[10] = { 2 };
+  double anyv[10] = { -2,1,0,1 };
 
   if (tpd > 0) E = tmpPhysData[0];
   if (tpd > 1) dE = tmpPhysData[1];
@@ -62,7 +63,10 @@ int main(int argc, char** argv)
   if (tpd > 6) startP = tmpPhysData[6];
   if (tpd > 7) startY = tmpPhysData[7];
   if (tpd > 8) _V = tmpPhysData[8];
-  if (tpd > 9) anyv = tmpPhysData[9];
+  for (int i = 0; i < 10; i++)
+  {
+    if (tpd > i) anyv[i] = tmpPhysData[9 + i];
+  }
   int count = rangeX / dx;
 
 
@@ -79,7 +83,8 @@ int main(int argc, char** argv)
       if (j != 0) E += dE;
       //  RightSideFunction* potential = new RightSideFunctionWellPotential(E);
       //  RightSideFunction* potential = new RightSideFunctionHarmonicPotential(E);
-      RightSideFunction* potential = new RightSideFunctionInclinedWellPotential(E,anyv);
+ //     RightSideFunction* potential = new RightSideFunctionInclinedWellPotential(E, anyv[0]);
+      RightSideFunction* potential = new RightSideFunctionDoubleWellPotential(E, anyv);
       potential->setV(_V);
       SchrodingerEquation se(potential);
       se.setCurrentX(startX);
@@ -105,9 +110,10 @@ int main(int argc, char** argv)
 
   }
   ofstream ofs("data.txt");
-//  RightSideFunction* potential = new RightSideFunctionWellPotential(E);
-//  RightSideFunction* potential = new RightSideFunctionHarmonicPotential(E);
-  RightSideFunction* potential = new RightSideFunctionInclinedWellPotential(E, anyv);
+  //  RightSideFunction* potential = new RightSideFunctionWellPotential(E);
+  //  RightSideFunction* potential = new RightSideFunctionHarmonicPotential(E);
+ //     RightSideFunction* potential = new RightSideFunctionDoubleWellPotential(E, anyv);
+  RightSideFunction* potential = new RightSideFunctionDoubleWellPotential(E, anyv);
   potential->setV(_V);
   SchrodingerEquation se(potential);
   se.setCurrentX(startX);
@@ -132,7 +138,7 @@ int main(int argc, char** argv)
   ofs2 << fixed << setprecision(12) << dE << endl;
   ofs2 << fixed << setprecision(12) << startX << endl;
   ofs2 << fixed << setprecision(12) << rangeX << endl;
-  ofs2 << fixed << setprecision(12) << dx<< endl;
+  ofs2 << fixed << setprecision(12) << dx << endl;
   ofs2 << fixed << setprecision(12) << accuracy << endl;
   ofs2 << fixed << setprecision(12) << startP << endl;
   ofs2 << fixed << setprecision(12) << startY << endl;
