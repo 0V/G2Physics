@@ -45,3 +45,7 @@ OpenGL用
 2. 変数変換によって一階の連立常微分方程式にする  
 3. LU分解で各変数を独立させる  
 4. 四次のルンゲ・クッタ法で微分方程式を解く  
+
+
+### ソースコード
+[0V/G2Physics | GitHub](https://github.com/0V/G2Physics)
