@@ -214,10 +214,29 @@ namespace pendulum {
       randDTheta = std::uniform_real_distribution<>(-10, 10);
     }
 
+     void updateCurrent() {
+       currentPendl = pendl;
+       for (int i = 0; i < 3; i++)
+       {
+         currentMass[i] = mass[i];
+         currentLength[i] = length[i];
+       }
+     }
+
+     void loadCurrent() {
+       pendl = currentPendl;
+       for (int i = 0; i < 3; i++)
+       {
+         mass[i] = currentMass[i];
+         length[i] = currentLength[i];
+       }
+     }
+
     TriplePendulum()
     {
       initRandGen();
       initData();
+      updateCurrent();
     };
 
     TriplePendulum(double diffTime)
@@ -225,25 +244,9 @@ namespace pendulum {
       initRandGen();
       dt = diffTime;
       initData();
+      updateCurrent();
     };
 
-    void updateCurrent() {
-      currentPendl = pendl;
-      for (int i = 0; i < 3; i++)
-      {
-        currentMass[i] = mass[i];
-        currentLength[i] = length[i];
-      }
-    }
-
-    void loadCurrent() {
-      currentPendl = pendl;
-      for (int i = 0; i < 3; i++)
-      {
-        currentMass[i] = mass[i];
-        currentLength[i] = length[i];
-      }
-    }
 
     void reset() {
       pendl = PendulumState();
