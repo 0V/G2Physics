@@ -11,6 +11,49 @@
 * コマンドラインから実行する場合、第一引数に設定ファイルのパスを指定できます。
 * "pendl_setting_sample.ini" の書き方を参考にしてください。
 
+[size]  
+lineWidth = 線分の太さ  
+locusWidth = 軌跡の太さ  
+circleSize = 質点の大きさ  
+circlePartition = 質点を何角形で表現するか  
+  
+[theta]  
+初期角度。根本から順に３つ。  
+  
+[dtheta]  
+初期角速度。根本から順に３つ。  
+  
+[mass]  
+質点の質量。根本から順に３つ。  
+  
+[length]  
+線分の長さ。根本から順に３つ。  
+  
+[speed]  
+repeat = 表示間隔。この回数シミュレーションが行われるたびに表示が更新される。  
+sleepms = 時間間隔dt。ミリ秒単位。  
+  
+[ballColor0]  
+振り子の根本の色。RGBの順。  
+  
+[ballColor1]  
+[ballColor2]  
+[ballColor3]  
+質点の色。RGBの順。根本から順に３つ。  
+  
+  
+[locusColor0]  
+[locusColor1]  
+[locusColor2]  
+質点の軌跡の色。RGBの順。根本から順に３つ。  
+  
+[lineColor]  
+線分の色。RGBの順。  
+  
+[bgColor]  
+背景色。RGBAの順。詳細にはglClearColorの引数。  
+
+
 ### キーバインド 
 実行中に指定されたキーを押すと以下のアクションが実行されます。  
 スタート時及びリスタート時に与えれた初期値は、コマンドラインに出力されます。
